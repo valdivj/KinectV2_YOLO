@@ -52,7 +52,7 @@ while True:
             x_Center = int((((result['topleft']['x']) + (result['bottomright']['x']))/2))
             y_Center = int((((result['topleft']['y']) + (result['bottomright']['y']))/2))
             Center = (int(x_Center /2), int(y_Center * .8))
-            Pixel_Depth = frameDepth[((y_Center *  512) + y_Center)]
+            Pixel_Depth = frameDepth[((y_Center *  512) + x_Center)]
             label = result['label']
             confidence = result['confidence']
             text = '{}:{:.0f}%'.format(label,confidence * 100)
@@ -66,7 +66,7 @@ while True:
         cv2.setMouseCallback('frame', click_event)
         cv2.setMouseCallback('frameD', click_event)
         frame = None
-        #print('FPS {:.1f}'.format(1 / (time.time() - stime)))
+        print('FPS {:.1f}'.format(1 / (time.time() - stime)))
     if cv2.waitKey(1) & 0xFF == ord('q'):
        break
 
