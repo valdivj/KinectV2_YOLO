@@ -26,7 +26,7 @@ Python3, tensorflow 1.0, numpy, opencv 3. PYkinect2
  
  Kinect_yolo depth.py: is the one to run.It h combines all the features
  
-![Screenshot](kinect yolo.jpg)
+![Image description](https://github.com/valdivj/KinectV2_YOLO/blob/master/kinect%20yolo.jpg)
 
 ```
 
