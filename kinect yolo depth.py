@@ -21,7 +21,7 @@ with tf.Session(config=config) as sess:
 
 colors = [tuple(255 * np.random.rand(3)) for _ in range(10)]
 kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color)
-kinectD = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Depth)q
+kinectD = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Depth)
 
 
 while True:
