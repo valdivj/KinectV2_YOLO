@@ -23,6 +23,9 @@ Python3, tensorflow 1.0, numpy, opencv 3. PYkinect2
  Then it adds the depth data to bounding box label.
  It also puts a colored circle(the same color as the bounding box)
  on the depth data window where it is readinf the depth data pixel.
+ 
+ Kinect_yolo depth.py: is the one to run.It h combines all the features
+ 
 
 
 ```
