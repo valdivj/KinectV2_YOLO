@@ -15,7 +15,7 @@ with tf.Session(config=config) as sess:
             'model': 'cfg/yolov2-tiny-voc.cfg',
             'load': 'bin/yolov2-tiny-voc.weights',
             'threshold': 0.2,
-            'gpu': 1.0
+            'gpu': 8.0
                     }
     tfnet = TFNet(options)
 
@@ -35,7 +35,7 @@ while True:
         frameD = kinectD.get_last_depth_frame()
         frameDepth = kinectD._depth_frame_data
         frameD = frameD.astype(np.uint8)
-        frameD = np.reshape(frameD, (424, 512))
+        frameD = np.reshape(frameD,(424, 512))
         frameD = cv2.cvtColor(frameD, cv2.COLOR_GRAY2BGR)
 
         def click_event(event, x, y, flags, param):
@@ -59,8 +59,8 @@ while True:
             textD = 'Depth{}mm'.format(Pixel_Depth)
             frame = cv2.rectangle(frame, tl, br, color, 5)
             frameD = cv2.circle(frameD, Center, 10, color, -1)
-            frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 2)
-            frame = cv2.putText(frame, textD, br, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 2)
+            frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
+            frame = cv2.putText(frame, textD, br, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
         cv2.imshow('frame', frame)
         cv2.imshow('frameD', frameD)
         cv2.setMouseCallback('frame', click_event)
