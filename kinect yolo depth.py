@@ -6,6 +6,11 @@ from pykinect2 import PyKinectRuntime
 import numpy as np
 import time
 import tensorflow as tf
+from eip import PLC
+#Uncoment next 2 lines for PLC support
+# I am pushing data to a PLC running CLX 5000 software
+#test = PLC()
+#test.IPAddress = "172.16.2.161"
 
 
 config = tf.ConfigProto(log_device_placement=True)
@@ -61,13 +66,20 @@ while True:
             frameD = cv2.circle(frameD, Center, 10, color, -1)
             frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
             frame = cv2.putText(frame, textD, br, cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
+
         cv2.imshow('frame', frame)
         cv2.imshow('frameD', frameD)
         cv2.setMouseCallback('frame', click_event)
         cv2.setMouseCallback('frameD', click_event)
+        print(label)
+        # uncomment next 2 lines for PLC support
+        # Make a String tag(YOLO_Sting) and a INT tag( YOLO_INT) in your CLX 5000 processor
+       # ex: test.Write("YOLO_String", label)
+       # ex: test.Write("YOLO_INT", Pixel_Depth)
         frame = None
-        print('FPS {:.1f}'.format(1 / (time.time() - stime)))
+        #print('FPS {:.1f}'.format(1 / (time.time() - stime)))
     if cv2.waitKey(1) & 0xFF == ord('q'):
        break
-
+       #Un coment line below for PLC support
+       #test.Close()
 cv2.destroyAllWindows()
