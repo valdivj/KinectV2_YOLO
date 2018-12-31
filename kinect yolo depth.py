@@ -20,7 +20,7 @@ with tf.Session(config=config) as sess:
             'model': 'cfg/yolov2-tiny-voc.cfg',
             'load': 'bin/yolov2-tiny-voc.weights',
             'threshold': 0.2,
-            'gpu': 8.0
+            'gpu': 7.0
                     }
     tfnet = TFNet(options)
 
@@ -47,7 +47,7 @@ while True:
             if event == cv2.EVENT_LBUTTONDOWN:
                 print(x, y)
             if event == cv2.EVENT_RBUTTONDOWN:
-                Pixel_Depth = frameDepth[((y * 512) - x)]
+                Pixel_Depth = frameDepth[(((y - 1) * 512) + x)]
                 print(Pixel_Depth)
 
         results = tfnet.return_predict(frame)
@@ -57,7 +57,7 @@ while True:
             x_Center = int((((result['topleft']['x']) + (result['bottomright']['x']))/2))
             y_Center = int((((result['topleft']['y']) + (result['bottomright']['y']))/2))
             Center = (int(x_Center /2), int(y_Center * .8))
-            Pixel_Depth = frameDepth[((y_Center *  512) + x_Center)]
+            Pixel_Depth = frameDepth[((int(y_Center * .8) *  512) + int(x_Center /2))]
             label = result['label']
             confidence = result['confidence']
             text = '{}:{:.0f}%'.format(label,confidence * 100)
@@ -71,11 +71,11 @@ while True:
         cv2.imshow('frameD', frameD)
         cv2.setMouseCallback('frame', click_event)
         cv2.setMouseCallback('frameD', click_event)
-        print(label)
+        #print(label)
         # uncomment next 2 lines for PLC support
         # Make a String tag(YOLO_Sting) and a INT tag( YOLO_INT) in your CLX 5000 processor
        # ex: test.Write("YOLO_String", label)
-       # ex: test.Write("YOLO_INT", Pixel_Depth)
+        #ex: test.Write("YOLO_INT", Pixel_Depth)
         frame = None
         #print('FPS {:.1f}'.format(1 / (time.time() - stime)))
     if cv2.waitKey(1) & 0xFF == ord('q'):
