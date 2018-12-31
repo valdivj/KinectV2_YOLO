@@ -24,6 +24,9 @@ Python3, tensorflow 1.0, numpy, opencv 3. PYkinect2
  It also puts a colored circle(the same color as the bounding box)
  on the depth data window where it is reading the depth data pixel.
  
+ PLC support for Allen Bradley CLX 5000 has been added
+ Check out screen shot
+ 
  Kinect_yolo depth.py: is the one to run.Its the combines all the features
  
  Kinect_yolo.py : is just the color and depth stream.
